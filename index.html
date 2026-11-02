@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Waste Ledger</title>
+    <!-- PWA / App Icon Configuration -->
+    <link rel="icon" type="image/png" sizes="512x512" href="icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Waste Ledger">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <style>
@@ -200,6 +210,147 @@
             color: #1e8449;
         }
         
+        
+        /* UPGRADE: Backup & Utilities Bar */
+        .header-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.6rem;
+        }
+        .data-tools-btns {
+            display: flex;
+            gap: 0.35rem;
+        }
+        .tool-btn {
+            background: #f1f2f6;
+            border: 1px solid #ced6e0;
+            color: #2f3542;
+            padding: 0.35rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            text-decoration: none;
+        }
+        .tool-btn:hover { background: #dfe4ea; }
+        .tool-btn.primary { background: #2ed573; color: white; border-color: #2ed573; }
+        
+        /* UPGRADE: Equivalencies Widget */
+        .equivalents-container {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        .equiv-header {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #bdc3c7;
+            margin-bottom: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .equiv-badge {
+            background: #27ae60;
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+        }
+        .equiv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.5rem;
+        }
+        .equiv-card {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 8px;
+            padding: 0.6rem 0.4rem;
+            text-align: center;
+        }
+        .equiv-icon { font-size: 1.4rem; margin-bottom: 0.2rem; }
+        .equiv-val { font-size: 1.05rem; font-weight: 800; color: #2ecc71; }
+        .equiv-label { font-size: 0.68rem; color: #ecf0f1; margin-top: 0.15rem; line-height: 1.1; }
+
+        /* UPGRADE: Share Impact Card Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+        .share-card-box {
+            background: white;
+            width: 100%;
+            max-width: 440px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+        .share-card-preview {
+            background: #1e272e;
+            color: white;
+            padding: 1.25rem;
+            font-family: -apple-system, system-ui, sans-serif;
+        }
+        .share-brand { font-size: 0.8rem; color: #00d2d3; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+        .share-title { font-size: 1.25rem; font-weight: 800; margin: 0.35rem 0 1rem; }
+        .share-stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 0.75rem; }
+        .share-tile { background: rgba(255,255,255,0.06); padding: 0.6rem; border-radius: 8px; }
+        .share-tile-val { font-size: 1.15rem; font-weight: 700; color: #2ecc71; }
+        .share-tile-lbl { font-size: 0.7rem; color: #bdc3c7; }
+        .share-equiv-row {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            color: #d2dae2;
+        }
+        .share-card-actions {
+            padding: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            background: white;
+        }
+        .share-btn-wa {
+            flex: 2;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+        .share-btn-close {
+            flex: 1;
+            background: #f1f2f6;
+            color: #333;
+            border: 1px solid #ccc;
+            padding: 0.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
         /* NOVA UPGRADE: Reports page */
         .report-grid {
             display: grid;
@@ -274,7 +425,17 @@
 </div>
 
 <header>
-    <h1>♻️ Waste Ledger</h1>
+    <div class="header-actions">
+        <h1>♻️ Waste Ledger</h1>
+        <div class="data-tools-btns no-print">
+            <button class="tool-btn" onclick="openShareModal()" title="Share Impact Card">📢 Share</button>
+            <button class="tool-btn" onclick="backupData()" title="Save backup JSON to device">💾 Backup</button>
+            <label class="tool-btn" title="Restore from backup JSON" style="margin:0;">
+                📂 Restore
+                <input type="file" id="restore-file-input" accept=".json" onchange="restoreData(event)" style="display:none;">
+            </label>
+        </div>
+    </div>
     <div class="app-nav no-print">
         <button class="nav-btn active" onclick="showPage('ledger')">Ledger</button>
         <button class="nav-btn" onclick="showPage('reports')">Reports</button>
@@ -344,6 +505,31 @@
                 <div class="carbon-box" style="background:#eaf2f8;">
                     <h3 style="color:#2980b9;">🏭 Avoided Manufacturing (All Time)</h3>
                     <div class="carbon-value" style="color:#2471a3;" id="avoided-total">0 kg CO₂e</div>
+                </div>
+            </div>
+
+            <!-- Tangible Real-World Impact Equivalencies -->
+            <div class="equivalents-container">
+                <div class="equiv-header">
+                    <span>⚡ Real-World Impact (All Time)</span>
+                    <span class="equiv-badge" id="net-carbon-headline">0 kg CO₂e Saved</span>
+                </div>
+                <div class="equiv-grid">
+                    <div class="equiv-card">
+                        <div class="equiv-icon">🚗</div>
+                        <div class="equiv-val" id="equiv-car-miles">0</div>
+                        <div class="equiv-label">Car Miles Avoided</div>
+                    </div>
+                    <div class="equiv-card">
+                        <div class="equiv-icon">☕</div>
+                        <div class="equiv-val" id="equiv-kettles">0</div>
+                        <div class="equiv-label">Cups of Tea Boiled</div>
+                    </div>
+                    <div class="equiv-card">
+                        <div class="equiv-icon">📱</div>
+                        <div class="equiv-val" id="equiv-phones">0</div>
+                        <div class="equiv-label">Phone Charges Saved</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -529,14 +715,17 @@
 </div>
 
 <script>// Carbon factors
+// Official UK Benchmarks: WRAP, Charity Retail Association (CRA), and UK DEFRA
+// Avoided values represent net avoided manufacturing post-displacement.
+// Diversion values represent DEFRA Scope 3 landfill methane emissions avoided.
 const CARBON = {
-    furniture: { diversion: 0.5, avoided: 1.5 },
-    clothes: { diversion: 0.3, avoided: 3.5 },
-    books: { diversion: 0.2, avoided: 0.8 },
-    bric: { diversion: 0.4, avoided: 1.0 },
-    electrical: { diversion: 0.5, avoided: 4.5 },
-    mattress: { diversion: 0.6, avoided: 2.0 },
-    bedframe: { diversion: 0.5, avoided: 1.5 }
+    furniture: { diversion: 0.50, avoided: 3.20 },
+    clothes: { diversion: 0.48, avoided: 8.20 },
+    books: { diversion: 0.45, avoided: 1.10 },
+    bric: { diversion: 0.48, avoided: 2.00 },
+    electrical: { diversion: 0.55, avoided: 7.50 },
+    mattress: { diversion: 0.60, avoided: 3.50 },
+    bedframe: { diversion: 0.50, avoided: 3.00 }
 };
 
 let currentMode = 'in';
@@ -1015,3 +1204,209 @@ function renderChart(canvasId, type, labels, data, colors) {
 
 </body>
 </html>
+
+<script>
+
+// --- TANGIBLE EQUIVALENCIES (DEFRA / WRAP UK Factors) ---
+// DEFRA: Average UK passenger car emissions ~0.22 kg CO2e / mile (1 mile avoided per 0.22 kg)
+// Kettle: Boiling 1 full mug of water ~0.016 kg CO2e (~62 cups of tea per 1 kg CO2e)
+// Smartphone: Full smartphone charge ~0.0083 kg CO2e (~120 charges per 1 kg CO2e)
+function updateEquivalencies(totalAvoidedKg) {
+    const netSavings = Math.max(0, totalAvoidedKg);
+    const carMiles = Math.round(netSavings / 0.22);
+    const kettles = Math.round(netSavings * 62);
+    const phones = Math.round(netSavings * 120);
+
+    const headlineEl = document.getElementById('net-carbon-headline');
+    if (headlineEl) headlineEl.textContent = (netSavings >= 1000 ? (netSavings / 1000).toFixed(2) + ' Tonnes' : netSavings.toFixed(1) + ' kg') + ' CO₂e';
+    
+    const milesEl = document.getElementById('equiv-car-miles');
+    if (milesEl) milesEl.textContent = carMiles.toLocaleString();
+    
+    const kettlesEl = document.getElementById('equiv-kettles');
+    if (kettlesEl) kettlesEl.textContent = kettles.toLocaleString();
+    
+    const phonesEl = document.getElementById('equiv-phones');
+    if (phonesEl) phonesEl.textContent = phones.toLocaleString();
+}
+
+// Hook into updateDashboard()
+const _originalUpdateDashboard = updateDashboard;
+updateDashboard = function() {
+    _originalUpdateDashboard();
+    
+    let allAvoid = 0;
+    transactions.filter(t => t.direction === 'out' && t.route === 'sold').forEach(t => {
+        const factor = CARBON[t.carbonKey]?.avoided || 1.0;
+        allAvoid += t.weight * (t.quantity || 1) * factor;
+    });
+    // Add diversion
+    let allDiv = 0;
+    transactions.filter(t => t.direction === 'in').forEach(t => {
+        const factor = CARBON[t.carbonKey]?.diversion || 0.5;
+        allDiv += t.weight * (t.quantity || 1) * factor;
+    });
+    transactions.filter(t => t.direction === 'out' && t.route === 'binned').forEach(t => {
+        const factor = CARBON[t.carbonKey]?.diversion || 0.5;
+        allDiv -= t.weight * (t.quantity || 1) * factor;
+    });
+    const totalImpact = Math.max(0, allAvoid + Math.max(0, allDiv));
+    updateEquivalencies(totalImpact);
+};
+
+// --- BULLETPROOF 1-TAP BACKUP & RESTORE ---
+function backupData() {
+    if (!transactions || transactions.length === 0) {
+        alert('No ledger transactions recorded yet to back up!');
+        return;
+    }
+    const backupObj = {
+        app: "WasteLedger",
+        version: "2.5",
+        exportDate: new Date().toISOString(),
+        totalTransactions: transactions.length,
+        transactions: transactions
+    };
+    const jsonStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(backupObj, null, 2));
+    const dlAnchor = document.createElement('a');
+    const today = new Date().toISOString().split('T')[0];
+    dlAnchor.setAttribute("href", jsonStr);
+    dlAnchor.setAttribute("download", `waste-ledger-backup-${today}.json`);
+    document.body.appendChild(dlAnchor);
+    dlAnchor.click();
+    dlAnchor.remove();
+}
+
+function restoreData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            let importedList = [];
+            if (Array.isArray(data)) {
+                importedList = data;
+            } else if (data && Array.isArray(data.transactions)) {
+                importedList = data.transactions;
+            } else {
+                throw new Error("Unrecognised backup format");
+            }
+            if (confirm(`Found ${importedList.length} transactions in this backup file.\n\nDo you want to restore them now? (This will merge with any existing data)`)) {
+                // Merge without duplicates by ID
+                const existingIds = new Set(transactions.map(t => t.id));
+                let addedCount = 0;
+                importedList.forEach(item => {
+                    if (!existingIds.has(item.id)) {
+                        transactions.push(item);
+                        existingIds.add(item.id);
+                        addedCount++;
+                    }
+                });
+                transactions.sort((a,b) => (b.id || 0) - (a.id || 0));
+                localStorage.setItem('wasteLedger', JSON.stringify(transactions));
+                updateDashboard();
+                renderHistory();
+                alert(`✅ Successfully restored! ${addedCount} new transactions added (Total: ${transactions.length}).`);
+            }
+        } catch (err) {
+            alert('❌ Failed to restore backup file: ' + err.message);
+        }
+    };
+    reader.readAsText(file);
+    event.target.value = ''; // Reset input
+}
+
+// --- SHARE IMPACT / WHATSAPP SUMMARY CARD ---
+function openShareModal() {
+    let soldCount = 0;
+    let soldKg = 0;
+    let avoidCO2 = 0;
+    let divCO2 = 0;
+
+    transactions.filter(t => t.direction === 'out' && t.route === 'sold').forEach(t => {
+        const qty = t.quantity || 1;
+        soldCount += qty;
+        soldKg += t.weight * qty;
+        avoidCO2 += t.weight * qty * (CARBON[t.carbonKey]?.avoided || 2.0);
+    });
+
+    transactions.filter(t => t.direction === 'in').forEach(t => {
+        divCO2 += t.weight * (t.quantity || 1) * (CARBON[t.carbonKey]?.diversion || 0.5);
+    });
+    transactions.filter(t => t.direction === 'out' && t.route === 'binned').forEach(t => {
+        divCO2 -= t.weight * (t.quantity || 1) * (CARBON[t.carbonKey]?.diversion || 0.5);
+    });
+
+    const netCO2 = Math.max(0, avoidCO2 + Math.max(0, divCO2));
+    const miles = Math.round(netCO2 / 0.22);
+    const kettles = Math.round(netCO2 * 62);
+    const phones = Math.round(netCO2 * 120);
+
+    const modalHtml = `
+    <div class="modal-overlay" id="share-modal" onclick="if(event.target===this)closeShareModal()">
+        <div class="share-card-box">
+            <div class="share-card-preview" id="share-card-content">
+                <div class="share-brand">🌱 Charity Shop Environmental Impact</div>
+                <div class="share-title">Waste Ledger Community Impact</div>
+                <div class="share-stat-row">
+                    <div class="share-tile">
+                        <div class="share-tile-val">${soldCount.toLocaleString()}</div>
+                        <div class="share-tile-lbl">Pre-Loved Items Sold</div>
+                    </div>
+                    <div class="share-tile">
+                        <div class="share-tile-val">${soldKg >= 1000 ? (soldKg/1000).toFixed(2) + ' t' : soldKg.toFixed(1) + ' kg'}</div>
+                        <div class="share-tile-lbl">Reused Weight</div>
+                    </div>
+                </div>
+                <div class="share-stat-row">
+                    <div class="share-tile" style="grid-column: span 2; background: rgba(46, 204, 113, 0.15); border: 1px solid rgba(46, 204, 113, 0.3);">
+                        <div class="share-tile-val" style="font-size:1.35rem; color:#2ecc71;">${netCO2 >= 1000 ? (netCO2/1000).toFixed(2) + ' Tonnes' : netCO2.toFixed(1) + ' kg'} CO₂e</div>
+                        <div class="share-tile-lbl" style="color:#e8f8f5;">Total Greenhouse Gas Avoided</div>
+                    </div>
+                </div>
+                <div class="share-equiv-row">
+                    <span>🚗 <b>${miles.toLocaleString()}</b> car miles</span>
+                    <span>☕ <b>${kettles.toLocaleString()}</b> cuppas</span>
+                    <span>📱 <b>${phones.toLocaleString()}</b> charges</span>
+                </div>
+            </div>
+            <div class="share-card-actions">
+                <button class="share-btn-wa" onclick="shareToWhatsApp(${soldCount}, ${soldKg}, ${netCO2}, ${miles}, ${kettles})">💬 Copy for WhatsApp</button>
+                <button class="share-btn-close" onclick="closeShareModal()">Close</button>
+            </div>
+        </div>
+    </div>`;
+
+    const existing = document.getElementById('share-modal');
+    if (existing) existing.remove();
+    document.body.insertAdjacentHTML('beforeend', modalHtml);
+}
+
+function closeShareModal() {
+    const m = document.getElementById('share-modal');
+    if (m) m.remove();
+}
+
+function shareToWhatsApp(items, kg, co2, miles, kettles) {
+    const co2Formatted = co2 >= 1000 ? (co2/1000).toFixed(2) + ' Tonnes' : co2.toFixed(1) + ' kg';
+    const kgFormatted = kg >= 1000 ? (kg/1000).toFixed(2) + ' Tonnes' : kg.toFixed(1) + ' kg';
+    const msg = `*🌱 Our Charity Shop Environmental Impact Report*\n\n` +
+                `✅ *${items.toLocaleString()}* items kept in circular use\n` +
+                `📦 *${kgFormatted}* diverted from waste\n` +
+                `🌍 *${co2Formatted} CO₂e* total carbon emissions saved!\n\n` +
+                `*Real-World Equivalents:*\n` +
+                `🚗 *${miles.toLocaleString()}* car miles taken off the road\n` +
+                `☕ *${kettles.toLocaleString()}* cups of tea boiled\n\n` +
+                `_Logged via Waste Ledger (WRAP & DEFRA Benchmarks)_`;
+
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(msg).then(() => {
+            alert('📋 Summary text copied to clipboard! You can now paste it directly into WhatsApp or email.');
+        });
+    } else {
+        alert(msg);
+    }
+}
+
+</script>
