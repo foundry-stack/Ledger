@@ -1,0 +1,21 @@
+{
+  "name": "Waste Ledger - Carbon Calculator",
+  "short_name": "Ledger",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#2c3e50",
+  "theme_color": "#2c3e50",
+  "description": "Charity Shop Carbon and Waste Calculator using WRAP and DEFRA benchmarks",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
